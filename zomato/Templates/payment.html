@@ -1,0 +1,73 @@
+{% extends 'base2.html' %}
+
+{% block title %}
+Payment
+{% endblock title %}
+
+{% block name %}
+Welcome, {{name | title}}
+{% endblock name %}
+{% block css %}
+
+{% endblock css %}
+
+{% block body %}
+<section class="mt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card text-center">
+                  <div class="card-header">
+                    Bill Details
+                  </div>
+                  <table class="w-100" cellpadding="10">
+                      <tbody>
+                            <tr>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    :
+                                </th>
+                                <td>
+                                    Here will be name
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Amount to Pay
+                                </th>
+                                <th>
+                                    :
+                                </th>
+                                <td>
+                                    <span id="get_amount"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colspan="3" class="text-center">
+                                    <button class="btn btn-success">Proceed to pay</button>
+                                </th>
+                            </tr>
+                      </tbody>
+                  </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock body %}
+{% block script %}
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+        document.getElementById('get_amount').innerHTML = localStorage.getItem('amount')
+    });
+</script>
+
+{% endblock script %}
+

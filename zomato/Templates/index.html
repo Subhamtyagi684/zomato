@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock css %}
+
+{% block body %}
+<div class="pizza-img" >
+    <img src="{% static 'images/bg.jpg' %}" class="img-fluid" width="100%" height="100%" >
+    <div class="jumbotron bg-light text-dark p-3" >
+        {% if messages %}
+              <ul class="messages">
+                {% for message in messages %}
+                  <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <table cellpadding="10">
+                <tbody>
+                    <tr>
+                        <th colspan="2">
+                            <center>
+                                <h3 class="p-0 m-0">Sign Up Here !</h3>
+                            </center>
+                        </th>
+                    </tr>
+                    {% for i in form %}
+                        <tr>
+                            <th>
+                                {{i.label_tag}}
+                            </th>
+                            <td>
+                                {{i}}
+                                {% if i.errors %}
+                                    {{i.errors}}
+                                {% endif %}
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <th colspan="2" class="text-center">
+                            <button class="btn btn-primary"  type="submit">Submit</button>
+                            <button class="ml-2 btn btn-warning" type="reset">Reset</button>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+
+        </form>
+    </div>
+</div>
+
+{% endblock body %}

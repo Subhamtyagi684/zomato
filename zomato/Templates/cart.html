@@ -1,0 +1,102 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% load mult_extras %}
+{% block title %}
+
+{% endblock title %}
+
+{% block name %}
+Welcome, {{name | title}}
+{% endblock name %}
+{% block css %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% endblock css %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% block body %}
+{% if messages %}
+    {% for message in messages %}
+        <p class="alert alert-success">{{message}}</p>
+    {% endfor %}
+{% endif %}
+<section class="mt-2 ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="" method="post">
+                <table class="w-100" cellpadding="10" border="1">
+                    <tbody>
+                        <tr class="text-center">
+                            <th>
+                                S.No.
+                            </th>
+                            <th>
+                                Item/s Description
+                            </th>
+                            <th>
+                                Quantity
+                            </th>
+                            <th>
+                                Amount
+                            </th>
+                            <th>
+                                Remove Item
+                            </th>
+                        </tr>
+                    {% if items %}
+                        {% for i in items %}
+                            <tr class="text-center">
+                                <th >
+                                    {{forloop.counter}}
+                                </th>
+                                <td>
+                                    {{i.order_name.name}}
+                                </td>
+                                <th>
+                                    {{i.quantity}}
+                                </th>
+                                <td>
+                                   <span id="amount{{forloop.counter}}" >{{i.order_name.price|mult:i.quantity}} </span>
+                                </td>
+                                <td>
+                                    <a href="/app/del_item/{{i.id}}" type="submit"> <i class="fa fa-minus-square" aria-hidden="true" style="color:red;font-size:18px"></i></a>
+                                </td>
+                            </tr>
+
+                            {% if forloop.last %}
+                                <tr>
+                                    <th colspan="5" class="text-right">
+                                        Add more items: <a href="/app/home/">Click Me</a>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="5" class="text-right">
+                                        Proceed to Pay: <a href="/app/pay" >Click Me</a>
+                                    </th>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+
+                    {% else %}
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                Sorry! No items found in your cart
+                            </td>
+                        </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock body %}
+
+{% block script %}
+
+
+{% endblock script%}
+
+<!--            sum = sum + Number(y.innerHTML)-->
