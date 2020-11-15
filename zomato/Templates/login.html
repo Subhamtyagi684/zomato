@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
+
 {% block title %}
 
 {% endblock title %}
@@ -33,6 +36,7 @@
                   </div>
                   <div class="w-100 text-center">
                       <button type="submit" class="btn btn-success">Login</button>
+                      <a href="{% provider_login_url "facebook" method="oauth2" %}">Login with facebook</a>
                   </div>
                     <div class="w-100 mt-3" style="display:flex;justify-content:space-between">
                         <a href="/app/password_reset" class="text-primary">Forgot Password ?</a>
