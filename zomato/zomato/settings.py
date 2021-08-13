@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'zomatoapp',
+    'rest_framework',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -141,3 +142,10 @@ MEDIA_URL = '/media/'
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/app/home'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}

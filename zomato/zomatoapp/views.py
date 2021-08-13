@@ -10,6 +10,13 @@ from django.contrib.auth.forms import PasswordResetForm,PasswordChangeForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login ,logout,update_session_auth_hash
 import random
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.status import *
+from rest_framework import status
+from rest_framework.authentication import SessionAuthentication,BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+from .auth import ExampleAuthentication,BlocklistPermission
 
 def index(request):
     if request.method=='POST':
@@ -163,3 +170,15 @@ def PasswordReset(request):
             messages.add_message(request, messages.ERROR ,'Something went wrong,please try again',extra_tags='alert alert danger')
     form = PasswordResetForm()
     return render(request,'registration/password_reset_form.html',{'form':form})
+
+
+class CustomApi(APIView):
+
+    authentication_classes = [ExampleAuthentication]
+    permission_classes = [BlocklistPermission]
+
+    def get(self,request):
+        
+        x = Response(request.COOKIES,status=status.HTTP_200_OK)
+        x.set_cookie('key','value')
+        return x

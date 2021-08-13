@@ -19,7 +19,8 @@ from . import  views
 from django.contrib.auth.views import PasswordResetView,PasswordResetDoneView,PasswordResetConfirmView,PasswordResetCompleteView
 
 urlpatterns = [
-    path('index/',views.index,name='index'),
+    path('',views.index,name='index'),
+    path('api/',views.CustomApi.as_view(),name="custom_api"),
     path('login/',views.Custlogin,name='login'),
     path('home/',views.home,name='home'),
     path('profile/',views.profile,name='profile'),

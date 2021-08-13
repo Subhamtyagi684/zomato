@@ -28,3 +28,7 @@ class Order(models.Model):
     order_name = models.ForeignKey(Pizza,on_delete=models.CASCADE)
     quantity = models.CharField(default=1,max_length=100)
 
+
+class Blocklist(models.Model):
+    ip_addr = models.CharField(max_length=15)
+    created_at = models.DateTimeField(auto_now_add=True)

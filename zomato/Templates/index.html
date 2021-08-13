@@ -11,7 +11,7 @@
 {% block body %}
 <div class="pizza-img" >
     <img src="{% static 'images/bg.jpg' %}" class="img-fluid" width="100%" height="100%" >
-    <div class="jumbotron bg-light text-dark p-3" >
+    <div class="jumbotron bg-light text-dark p-3 d-none" >
         {% if messages %}
               <ul class="messages">
                 {% for message in messages %}
